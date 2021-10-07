@@ -23,15 +23,83 @@
                         <button class="btn btn-primary btn-sm" type="submit" id="searchBtn"><span class="fas fa-search">Search</span>
                         </button>
                 </div>
-                <div class="list" id="listCity"></div>
+                <li class="list-group col-sm-3" id="searchCities"></li>
             </div>
             <div class="col-sm-9">
                 <div class="card" style="width: 100%;" id="container">
-                    <div id="weatherContainer"></div>
+                    <div class="card" id="weatherContainer">
+                        <div class="card-body">
+                            <h2 class="card-title align-items-center">
+                                <span id="cityName">City</span>
+                                <span id="todaysDate"></span>
+                                <img class="weather-icon" id="todaysWeather" src="">
+                            </h2>
+                            <p class="card-body">Temperature:</p>
+                            <p class="card-body">Humidity:</p>
+                            <p class="card-body">Wind:</p> 
+                            <p class="card-body">UV Index:</p>       
+                        </div>
+                    </div>
+                <div class="forecast">
+                    <h3>Five Day Forecast</h3>
+                    <div class="card-deck">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">MM/DD/YYYY</h5>
+                                <p class="card-body">
+                                    <img class="weather-icon" id="icon1" src="">
+                                </p>
+                                <p class="card-body" id="temp1">Temp:</p>
+                                <p class="card-body" id="hum1">Humidity:</p>
+                            </div>
+                        </div>
+                        <div class="card">  
+                            <div class="card-body">
+                                <h5 class="card-title">MM/DD/YYYY</h5>
+                                <p class="card-body">
+                                    <img class="weather-icon" id="icon2" src="">
+                                </p>
+                                <p class="card-body" id="temp2">Temp:</p>
+                                <p class="card-body" id="hum2">Humidity:</p>
+                            </div>
+                        </div>
+                        <div class="card">  
+                            <div class="card-body">
+                                <h5 class="card-title">MM/DD/YYYY</h5>
+                                <p class="card-body">
+                                    <img class="weather-icon" id="icon3" src="">
+                                </p>
+                                <p class="card-body" id="temp3">Temp:</p>
+                                <p class="card-body" id="hum3">Humidity:</p>
+                            </div>
+                        </div>
+                        <div class="card">  
+                            <div class="card-body">
+                                <h5 class="card-title">MM/DD/YYYY</h5>
+                                <p class="card-body">
+                                    <img class="weather-icon" id="icon4" src="">
+                                </p>
+                                <p class="card-body" id="temp4">Temp:</p>
+                                <p class="card-body" id="hum4">Humidity:</p>
+                            </div>
+                        </div>
+                        <div class="card">  
+                            <div class="card-body">
+                                <h5 class="card-title">MM/DD/YYYY</h5>
+                                <p class="card-body">
+                                    <img class="weather-icon" id="icon5" src="">
+                                </p>
+                                <p class="card-body" id="temp5">Temp:</p>
+                                <p class="card-body" id="hum5">Humidity:</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
                 </div>
             </div>
         </div>
     <script src="./assets/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 </body>
 </html>
