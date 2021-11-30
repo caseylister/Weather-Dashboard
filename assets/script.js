@@ -110,6 +110,7 @@ var getCityWeather = function (searchCityName) {
       });
   };
   
+  
   var creatBtn = function (btnText) {
     var btn = $("<button>")
       .text(btnText)
@@ -117,6 +118,7 @@ var getCityWeather = function (searchCityName) {
       .attr("type", "submit");
     return btn;
   };
+
   
   var loadSavedCity = function () {
     citiesListArr = JSON.parse(localStorage.getItem("weatherInfo"));
@@ -128,6 +130,7 @@ var getCityWeather = function (searchCityName) {
       searchedCities.append(cityNameBtn);
     }
   };
+
   
   var saveCityName = function (searchCityName) {
     var newcity = 0;
@@ -154,6 +157,7 @@ var getCityWeather = function (searchCityName) {
     newcity = 1;
     return newcity;
   };
+
 
   var createCityNameBtn = function (searchCityName) {
     var saveCities = JSON.parse(localStorage.getItem("weatherInfo"));
@@ -182,3 +186,28 @@ var getCityWeather = function (searchCityName) {
   
   
   loadSavedCity();
+
+  var formSubmitHandler = function (event) {
+    event.preventDefault();
+    
+    var searchCityName = $("#city").val().trim();
+    var newcity = saveCityName(searchCityName);
+    getCityWeather(searchCityName);
+    if (newcity == 1) {
+      createCityNameBtn(searchCityName);
+    }
+  };
+
+  var BtnClickHandler = function (event) {
+    event.preventDefault();
+    
+    var searchCityName = event.target.textContent.trim();
+    getCityWeather(searchCityName);
+  };
+  
+  $("#searchCityForm").on("submit", function () {
+    formSubmitHandler(event);
+  });
+  $(":button.list-group-item-action").on("click", function () {
+    BtnClickHandler(event);
+  });
