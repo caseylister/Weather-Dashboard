@@ -3,10 +3,14 @@
 }
 
 header{
-    background-color:#3874ab !important;
-    color: white !important;
+    background-color:#3874ab;
+    color: white;
     padding-top: 10px;
     padding-bottom: 20px;
+}
+
+.area{
+    background-color: #dceffa;
 }
 
 h3{
