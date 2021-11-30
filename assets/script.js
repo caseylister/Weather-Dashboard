@@ -154,3 +154,31 @@ var getCityWeather = function (searchCityName) {
     newcity = 1;
     return newcity;
   };
+
+  var createCityNameBtn = function (searchCityName) {
+    var saveCities = JSON.parse(localStorage.getItem("weatherInfo"));
+  
+    if (saveCities.length == 1) {
+      var cityNameBtn = creatBtn(searchCityName);
+      searchedCities.prepend(cityNameBtn);
+    } else {
+      for (var i = 1; i < saveCities.length; i++) {
+        if (searchCityName.toLowerCase() == saveCities[i].toLowerCase()) {
+          return;
+        }
+      }
+      if (searchedCities[0].childElementCount < numOfCities) {
+        var cityNameBtn = creatBtn(searchCityName);
+      } else {
+        searchedCities[0].removeChild(searchedCities[0].lastChild);
+        var cityNameBtn = creatBtn(searchCityName);
+      }
+      searchedCities.prepend(cityNameBtn);
+      $(":button.list-group-item-action").on("click", function () {
+        BtnClickHandler(event);
+      });
+    }
+  };
+  
+  
+  loadSavedCity();
