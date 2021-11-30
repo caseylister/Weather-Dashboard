@@ -1,105 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+
     <title>Weather Dashboard</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
         <h1 class="text-center">Weather Dashboard</h1>
     </header>
-
-    <div class="container-fluid">
-
-        <div class="row">
-            <div class="col-sm-3 search">
-                <h3>Search for a City:</h3>
-                <div class="input">
-                    <input type="text" class="form" id="city" placeholder="Enter a city">
-                        <button class="btn btn-primary btn-sm" type="submit" id="searchBtn"><span class="fas fa-search">Search</span>
-                        </button>
-                </div>
-                <li class="list-group col-sm-3" id="searchCities"></li>
+    <main>
+      <div class="row min-vh-100">
+        <section class="col-12 col-lg-3 bg-light py-4 mblank-0 d-flex flex-column">
+          <form class="form-group" id="searchCityForm">
+            <label for="city" class="col col-12">Search for a City</label>
+            <div class="form-check-inline col col-12 px-3">
+              <input
+                type="text"
+                class="form-input"
+                id="city"
+                autofocus="true"
+                aria-describedby="city"
+              />
+              <button type="submit" class="btn btn-primary" id="searchCityForm">
+                <span class="fas fa-search"></span>
+              </button>
             </div>
-            <div class="col-sm-9">
-                <div class="card" style="width: 100%;" id="container">
-                    <div class="card" id="weatherContainer">
-                        <div class="card-body">
-                            <h2 class="card-title align-items-center">
-                                <span id="cityName">City</span>
-                                <span id="todaysDate"></span>
-                                <img class="weather-icon" id="todaysWeather" src="">
-                            </h2>
-                            <p class="card-body">Temperature:</p>
-                            <p class="card-body">Humidity:</p>
-                            <p class="card-body">Wind:</p> 
-                            <p class="card-body">UV Index:</p>       
-                        </div>
-                    </div>
-                <div class="forecast">
-                    <h3>Five Day Forecast</h3>
-                    <div class="card-deck">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">MM/DD/YYYY</h5>
-                                <p class="card-body">
-                                    <img class="weather-icon" id="icon1" src="">
-                                </p>
-                                <p class="card-body" id="temp1">Temp:</p>
-                                <p class="card-body" id="hum1">Humidity:</p>
-                            </div>
-                        </div>
-                        <div class="card">  
-                            <div class="card-body">
-                                <h5 class="card-title">MM/DD/YYYY</h5>
-                                <p class="card-body">
-                                    <img class="weather-icon" id="icon2" src="">
-                                </p>
-                                <p class="card-body" id="temp2">Temp:</p>
-                                <p class="card-body" id="hum2">Humidity:</p>
-                            </div>
-                        </div>
-                        <div class="card">  
-                            <div class="card-body">
-                                <h5 class="card-title">MM/DD/YYYY</h5>
-                                <p class="card-body">
-                                    <img class="weather-icon" id="icon3" src="">
-                                </p>
-                                <p class="card-body" id="temp3">Temp:</p>
-                                <p class="card-body" id="hum3">Humidity:</p>
-                            </div>
-                        </div>
-                        <div class="card">  
-                            <div class="card-body">
-                                <h5 class="card-title">MM/DD/YYYY</h5>
-                                <p class="card-body">
-                                    <img class="weather-icon" id="icon4" src="">
-                                </p>
-                                <p class="card-body" id="temp4">Temp:</p>
-                                <p class="card-body" id="hum4">Humidity:</p>
-                            </div>
-                        </div>
-                        <div class="card">  
-                            <div class="card-body">
-                                <h5 class="card-title">MM/DD/YYYY</h5>
-                                <p class="card-body">
-                                    <img class="weather-icon" id="icon5" src="">
-                                </p>
-                                <p class="card-body" id="temp5">Temp:</p>
-                                <p class="card-body" id="hum5">Humidity:</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>    
-                </div>
+          </form>
+          <li class="list-group col col-12 d-none d-lg-block px-3" id="cities"></li>
+        </section>
+        <section class="col-12 col-lg-9 mt-3 d-flex flex-column px-3" id="display-weather-info">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title d-flex align-items-center lead font-weight-bold" style="height: 100px">
+                <span id="cityName">City</span>
+                <span class="px-3" id="todaysDate"> MM/DD/YY</span>
+                <img class="weather-icon" id="todaysIcon" src="">
+                </img>
+              </h2>
+              <p class="card-text">
+                Temperature:
+                <span id="todaysTemp"></span>
+              </p>
+              <p class="card-text">
+                Humidity:
+                <span id="todaysHumidity"></span>
+              </p>
+              <p class="card-text">
+                Wind Speed:
+                <span id="todaysWind"></span>
+              </p>
+              <p class="card-text">
+                UV Index:
+                <span id="todaysUV"></span>
+              </p>
             </div>
-        </div>
-    <script src="./assets/script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+          </div>
+          <div class="px-3">
+            <h2 class="card-title d-flex align-items-center lead font-weight-bold mt-3" style="height: 50px">
+              5-Day Forecast:
+            </h2>
+            <div class="row justify-content-between">
+              <div class="col-sm-2 card-body bg-primary text-white rounded mb-3">
+                <p class="card-title font-weight-bold" id="day1">MM/DD/YY</p>
+                <p class="card-text" style="height: 100px">
+                  <img class="weather-icon" id="icon1" src="">
+                </img>
+                </p>
+                <p class="card-text">Temp:
+                  <spanid id="temp1"></span>
+                </p>
+                <p class="card-text">Humidity:
+                  <span id="hum1"></span>
+                </p>
+              </div>
+              <div class="col-sm-2 card-body bg-primary text-white rounded mb-3">
+                <p class="card-title font-weight-bold" id="day2">MM/DD/YY</p>
+                <p class="card-text" style="height: 100px">
+                  <img class="weather-icon" id="icon2" src="">
+                </img>
+                </p>
+                <p class="card-text">Temp:
+                  <spanid id="temp2"></span>
+                </p>
+                <p class="card-text">Humidity:
+                  <span id="hum2"></span>
+                </p>
+              </div>
+              <div class="col-sm-2 card-body bg-primary text-white rounded mb-3">
+                <p class="card-title font-weight-bold" id="day3">MM/DD/YY</p>
+                <p class="card-text" style="height: 100px">
+                  <img class="weather-icon" id="icon3" src="">
+                </img>
+                </p>
+                <p class="card-text">Temp:
+                  <spanid id="temp3"></span>
+                </p>
+                <p class="card-text">Humidity:
+                  <span id="hum3"></span>
+                </p>
+              </div>
+              <div class="col-sm-2 card-body bg-primary text-white rounded mb-3">
+                <p class="card-title font-weight-bold" id="day4">MM/DD/YY</p>
+                <p class="card-text" style="height: 100px">
+                  <img class="weather-icon" id="icon4"  src="">
+                </img>
+                </p>
+                <p class="card-text">Temp:
+                  <spanid id="temp4"></span>
+                </p>
+                <p class="card-text">Humidity:
+                  <span id="hum4"></span>
+                </p>
+              </div>
+              <div class="col-sm-2 card-body bg-primary text-white rounded mb-3">
+                <p class="card-title font-weight-bold" id="day5">MM/DD/YY</p>
+                <p class="card-text" style="height: 100px">
+                  <img class="weather-icon" id="icon5" src="">
+                </img>
+                </p>
+                <p class="card-text">Temp:
+                  <spanid id="temp5"></span>
+                </p>
+                <p class="card-text">Humidity:
+                  <span id="hum5"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <!--JQuery script-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-</body>
+    <!--JS file script-->
+    <script src="assets/script.js"></script>
+  </body>
 </html>
