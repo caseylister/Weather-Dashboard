@@ -1,3 +1,4 @@
+// global variables
 var citiesListArr = [];
 var numOfCities = 9;
 var myApi = "appid=4656869a8d8816608a5b74aab68efafa";
@@ -9,6 +10,7 @@ var forecastWeather = "https://api.openweathermap.org/data/2.5/onecall?";
 var searchCityForm = $("#searchCityForm");
 var searchedCities = $("#cities");
 
+// Get today's weather based on city from api
 var getCityWeather = function (searchCityName) {
     var apiLink =
       dailyWeather + searchCityName + "&" + myApi + "&" + unit;
@@ -41,7 +43,8 @@ var getCityWeather = function (searchCityName) {
       }
     });
   };
-  
+
+// Get UV Index from api  
   var getUVIndex = function (lat, lon) {
     
     var apiLink =
@@ -71,6 +74,7 @@ var getCityWeather = function (searchCityName) {
       });
   };
 
+// Get forecast from api 
   var getForecast = function (lat, lon) {
 
     var apiLink =
@@ -109,7 +113,7 @@ var getCityWeather = function (searchCityName) {
         }
       });
   };
-  
+
   
   var creatBtn = function (btnText) {
     var btn = $("<button>")
@@ -119,7 +123,7 @@ var getCityWeather = function (searchCityName) {
     return btn;
   };
 
-  
+// Display saved city names  
   var loadSavedCity = function () {
     citiesListArr = JSON.parse(localStorage.getItem("weatherInfo"));
     if (citiesListArr == null) {
@@ -131,7 +135,7 @@ var getCityWeather = function (searchCityName) {
     }
   };
 
-  
+// Save city names  
   var saveCityName = function (searchCityName) {
     var newcity = 0;
     citiesListArr = JSON.parse(localStorage.getItem("weatherInfo"));
@@ -158,7 +162,7 @@ var getCityWeather = function (searchCityName) {
     return newcity;
   };
 
-
+// Turn saved cities into buttons
   var createCityNameBtn = function (searchCityName) {
     var saveCities = JSON.parse(localStorage.getItem("weatherInfo"));
   
@@ -187,6 +191,7 @@ var getCityWeather = function (searchCityName) {
   
   loadSavedCity();
 
+// Button event handlers
   var formSubmitHandler = function (event) {
     event.preventDefault();
     
