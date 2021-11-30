@@ -70,3 +70,87 @@ var getCityWeather = function (searchCityName) {
         }
       });
   };
+
+  var getForecast = function (lat, lon) {
+
+    var apiLink =
+      forecastWeather +
+      "lat=" +
+      lat +
+      "&lon=" +
+      lon +
+      "&exclude=current,minutely,hourly" +
+      "&" +
+      myApi +
+      "&" +
+      unit;
+    fetch(apiLink)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (response) {
+        for (var i = 1; i < 6; i++) {
+  
+          var unixTime = response.daily[i].dt;
+          var date = moment.unix(unixTime).format("MM/DD/YY");
+          $("#day" + i).html(date);
+      
+          var weatherIncoUrl =
+            "http://openweathermap.org/img/wn/" +
+            response.daily[i].weather[0].icon +
+            "@2x.png";
+          $("#icon" + i).attr("src", weatherIncoUrl);
+  
+          var temp = response.daily[i].temp.day + " \u00B0F";
+          $("#temp" + i).html(temp);
+         
+          var humidity = response.daily[i].humidity;
+          $("#hum" + i).html(humidity + " %");
+        }
+      });
+  };
+  
+  var creatBtn = function (btnText) {
+    var btn = $("<button>")
+      .text(btnText)
+      .addClass("list-group-item list-group-item-action")
+      .attr("type", "submit");
+    return btn;
+  };
+  
+  var loadSavedCity = function () {
+    citiesListArr = JSON.parse(localStorage.getItem("weatherInfo"));
+    if (citiesListArr == null) {
+      citiesListArr = [];
+    }
+    for (var i = 0; i < citiesListArr.length; i++) {
+      var cityNameBtn = creatBtn(citiesListArr[i]);
+      searchedCities.append(cityNameBtn);
+    }
+  };
+  
+  var saveCityName = function (searchCityName) {
+    var newcity = 0;
+    citiesListArr = JSON.parse(localStorage.getItem("weatherInfo"));
+    if (citiesListArr == null) {
+      citiesListArr = [];
+      citiesListArr.unshift(searchCityName);
+    } else {
+      for (var i = 0; i < citiesListArr.length; i++) {
+        if (searchCityName.toLowerCase() == citiesListArr[i].toLowerCase()) {
+          return newcity;
+        }
+      }
+      if (citiesListArr.length < numOfCities) {
+        
+        citiesListArr.unshift(searchCityName);
+      } else {
+        
+        citiesListArr.pop();
+        citiesListArr.unshift(searchCityName);
+      }
+    }
+    localStorage.setItem("weatherInfo", JSON.stringify(citiesListArr));
+    newcity = 1;
+    return newcity;
+  };
